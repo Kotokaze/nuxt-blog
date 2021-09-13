@@ -35,6 +35,8 @@ export default {
     '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
+    // https://typed-vuex.roe.dev
+    'nuxt-typed-vuex',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -48,7 +50,9 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    proxy: true
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
@@ -60,7 +64,20 @@ export default {
   // Content module configuration: https://go.nuxtjs.dev/config-content
   content: {},
 
+  proxy: {
+    '/api/': process.env.MICROCMS_API_URL
+  },
+
+  // Private runtime configuration
+  privateRuntimeConfig: {
+    // Will only be available on the server
+    apiKey: process.env.MICROCMS_API_KEY,
+  },
+
+  publickRuntimeConfig: {
+    // Will be available on both server and client
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-  }
+  build: {}
 }
